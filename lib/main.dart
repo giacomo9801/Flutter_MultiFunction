@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:functions/operazioni/calcolatrice.dart';
 import 'package:functions/operazioni/percentuale.dart';
+import 'package:functions/ricerca/ricerca.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
             const Calcolatrice(),
         '../lib/operazioni/percentuale': (BuildContext context) =>
             const Percentuale(),
+        '../lib/ricerca/ricerca': (BuildContext context) => const Ricerca(),
       },
     );
   }
@@ -147,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           color: Colors.green,
           alignment: Alignment.center,
-          child: const Text('Page 2'),
+          child: const Ricerca(),
         ),
         Container(
           color: Colors.blue,

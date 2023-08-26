@@ -40,11 +40,14 @@ class _RicercaState extends State<Ricerca> {
         home: Scaffold(
             appBar: EasySearchBar(
                 title: const Text(
-                  'Ricerca la tua città',
+                  'Ricerca il tuo paese',
                   textAlign: TextAlign.center,
                 ),
                 onSearch: (value) => setState(() => valorecercato = value),
                 suggestions: paesi),
-            body: Center(child: Text('Hai selezionato: $valorecercato'))));
+            body: Center(
+                child: Text(valorecercato.isEmpty
+                    ? "Non hai selezionato nulla."
+                    : 'Hai selezionato: $valorecercato'))));
   }
 }

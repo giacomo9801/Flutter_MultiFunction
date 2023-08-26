@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
+        animationDuration: const Duration(milliseconds: 650),
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -91,8 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   splashColor: Colors.blue.withAlpha(30),
                   hoverColor: Colors.blue.withAlpha(30),
                   onTap: () {
-                    Navigator.pushNamed(
-                        context, '../lib/operazioni/calcolatrice');
+                    Navigator.of(context).push(_createRouteCalcolatrice());
                   },
                   child: const SizedBox(
                     width: 200,
@@ -123,8 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   splashColor: Colors.blue.withAlpha(30),
                   hoverColor: Colors.blue.withAlpha(30),
                   onTap: () {
-                    Navigator.pushNamed(
-                        context, '../lib/operazioni/percentuale');
+                    Navigator.of(context).push(_createRoutePercentuale());
                   },
                   child: const SizedBox(
                     width: 200,
@@ -157,6 +156,47 @@ class _MyHomePageState extends State<MyHomePage> {
           child: const Text('Page 3'),
         ),
       ][currentPageIndex],
+    );
+  }
+
+  Route _createRouteCalcolatrice() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          const Calcolatrice(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
+  Route _createRoutePercentuale() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          const Percentuale(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0); // Entrata da destra
+        const end = Offset.zero;
+        const curve =
+            Curves.easeInOut; // Cambia la curva di animazione come desideri
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }

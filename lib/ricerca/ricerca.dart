@@ -40,7 +40,7 @@ class _RicercaState extends State<Ricerca> {
         home: Scaffold(
             appBar: EasySearchBar(
                 title: const Text(
-                  'Ricerca il tuo paese',
+                  'Ricerca il tuo paese ➡️',
                   textAlign: TextAlign.center,
                 ),
                 onSearch: (value) => setState(() => valorecercato = value),

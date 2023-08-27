@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:functions/operazioni/calcolatrice.dart';
-import 'package:functions/operazioni/percentuale.dart';
+
 import 'package:functions/ricerca/ricerca.dart';
+import 'package:functions/api/api_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,9 +24,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '../lib/operazioni/calcolatrice': (BuildContext context) =>
             const Calcolatrice(),
-        '../lib/operazioni/percentuale': (BuildContext context) =>
-            const Percentuale(),
         '../lib/ricerca/ricerca': (BuildContext context) => const Ricerca(),
+        '../lib/api/api_home': (BuildContext context) => const Api(),
       },
     );
   }
@@ -67,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Ricerca',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.upload_outlined),
-            icon: Icon(Icons.upload),
-            label: 'Upload',
+            selectedIcon: Icon(Icons.api_outlined),
+            icon: Icon(Icons.api),
+            label: 'Api',
           ),
         ],
       ),
@@ -111,37 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Card(
-                // clipBehavior is necessary because, without it, the InkWell's animation
-                // will extend beyond the rounded edges of the [Card] (see https://github.com/flutter/flutter/issues/109776)
-                // This comes with a small performance cost, and you should not set [clipBehavior]
-                // unless you need it.
-                clipBehavior: Clip.hardEdge,
-                child: InkWell(
-                  onDoubleTap: () =>
-                      debugPrint('Double Tap sulla card Percentuale'),
-                  splashColor: Colors.blue.withAlpha(30),
-                  hoverColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    Navigator.of(context).push(_createRoutePercentuale());
-                  },
-                  child: const SizedBox(
-                    width: 200,
-                    height: 100,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Percentuale',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 24,
-                            )),
-                        Icon(Icons.percent),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -153,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           color: Colors.blue,
           alignment: Alignment.center,
-          child: const Text('Page 3'),
+          child: const Api(),
         ),
       ][currentPageIndex],
     );
@@ -167,27 +136,6 @@ class _MyHomePageState extends State<MyHomePage> {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;
         const curve = Curves.ease;
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
-
-  Route _createRoutePercentuale() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          const Percentuale(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0); // Entrata da destra
-        const end = Offset.zero;
-        const curve =
-            Curves.easeInOut; // Cambia la curva di animazione come desideri
 
         var tween =
             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));

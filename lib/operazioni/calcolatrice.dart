@@ -101,7 +101,7 @@ class _CalcolatriceState extends State<Calcolatrice> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 60, right: 30, left: 30),
+              padding: const EdgeInsets.only(bottom: 30, right: 30, left: 30),
               child: TextField(
                 controller: TextEditingController(text: inputTesto),
                 textAlign: TextAlign.center,
